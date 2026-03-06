@@ -17,7 +17,8 @@ const displayAllIssue = async (issue) => {
 
   issue.forEach((item) => {
     const div = document.createElement("div");
-    div.className = "shadow-sm p-4 rounded-md border-t-4 border-[#00A96E]";
+
+    div.className = `shadow-sm p-4 rounded-md border-t-4 ${item.status === "open" ? "border-[#00A96E]" : "border-[#A855F7]"}`;
     div.innerHTML = `
          <div class="flex justify-between items-center mb-3">
               <img src="./assets/Open-Status.png" alt="" />
@@ -56,8 +57,9 @@ const displayAllIssue = async (issue) => {
             </div>
 
             <div class="pt-4">
-              <p class="text-[12px] text-[#64748B] mb-2">#1 by john_doe</p>
-              <p class="text-[12px] text-[#64748B]">1/15/2024</p>
+              <p class="text-[12px] text-[#64748B] mb-2">${item.assignee}</p>
+              <p class="text-[12px] text-[#64748B] mb-2">Created: ${new Date(item.createdAt).toLocaleDateString()}</p>
+              <p class="text-[12px] text-[#64748B]">Updated: ${new Date(item.updatedAt).toLocaleDateString()}</p>
             </div>
     `;
 
