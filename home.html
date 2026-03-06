@@ -33,7 +33,43 @@
       referrerpolicy="no-referrer"
     />
   </head>
-  <body>
-    <h1 class="text-2xl font-bold bg-lime-600 text-white p-8">Home</h1>
+  <body class="bg-[#F8FAFC] min-h-screen">
+    <nav class="shadow bg-white">
+      <div class="flex justify-between max-w-[1440px] py-5 px-2 mx-auto">
+        <div class="flex items-center gap-4">
+          <img class="max-w-8" src="./assets/github-logo.png" alt="" />
+          <h2 class="font-semibold md:text-2xl">GitHub Issues Tracker</h2>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="hidden sm:block">
+            <input
+              class="input rounded-md"
+              placeholder=" Search issues..."
+              type="text"
+            />
+          </div>
+
+          <div>
+            <button class="btn bg-[#4A00FF] text-white rounded-md">
+              <i class="fa-solid fa-plus"></i> New Issue
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="max-w-[1110px] mx-auto mt-[60px]">
+      <div class="bg-white p-6 rounded-lg flex gap-3">
+        <button class="btn font-medium rounded-md text-white bg-[#4A00FF]">
+          All
+        </button>
+        <button class="btn font-medium rounded-md">Open</button>
+        <button class="btn font-medium rounded-md">Closed</button>
+      </div>
+    </section>
+
+    <!-- js connect -->
+    <script src="./script/home.js"></script>
   </body>
 </html>
