@@ -1,5 +1,6 @@
 const issueCardContainer = document.getElementById("issue-card-container");
-console.log(issueCardContainer);
+const totalIssueNumber = document.getElementById("total-issue-number");
+// console.log(issueCardContainer);
 
 const loadAllIssue = async () => {
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
@@ -62,7 +63,15 @@ const displayAllIssue = async (issue) => {
 
     issueCardContainer.append(div);
   });
+  showTotalIssue();
 };
+
+// dynamically show  total number of issue
+function showTotalIssue() {
+  const issueContainerChildren = issueCardContainer.children;
+
+  totalIssueNumber.innerText = issueContainerChildren.length;
+}
 
 /*
 {
