@@ -34,42 +34,126 @@
     />
   </head>
   <body class="bg-[#F8FAFC] min-h-screen">
-    <nav class="shadow bg-white">
-      <div class="flex justify-between max-w-[1440px] py-5 px-2 mx-auto">
-        <div class="flex items-center gap-4">
-          <img class="max-w-8" src="./assets/github-logo.png" alt="" />
-          <h2 class="font-semibold md:text-2xl">GitHub Issues Tracker</h2>
-        </div>
-
-        <div class="flex items-center gap-4">
-          <div class="hidden sm:block">
-            <input
-              class="input rounded-md"
-              placeholder=" Search issues..."
-              type="text"
-            />
+    <main>
+      <!-- navigation menu -->
+      <nav class="shadow bg-white">
+        <div class="flex justify-between max-w-[1440px] py-5 px-2 mx-auto">
+          <div class="flex items-center gap-4">
+            <img class="max-w-8" src="./assets/github-logo.png" alt="" />
+            <h2 class="font-semibold md:text-2xl">GitHub Issues Tracker</h2>
           </div>
 
-          <div>
-            <button class="btn bg-[#4A00FF] text-white rounded-md">
-              <i class="fa-solid fa-plus"></i> New Issue
-            </button>
+          <div class="flex items-center gap-4">
+            <div class="hidden sm:block">
+              <input
+                class="input rounded-md"
+                placeholder=" Search issues..."
+                type="text"
+              />
+            </div>
+
+            <div>
+              <button class="btn bg-[#4A00FF] text-white rounded-md">
+                <i class="fa-solid fa-plus"></i> New Issue
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
-    <section class="max-w-[1110px] mx-auto mt-2 sm:mt-[60px]">
-      <div
-        class="bg-white p-6 rounded-lg flex gap-3 justify-center sm:justify-start"
-      >
-        <button class="btn font-medium rounded-md text-white bg-[#4A00FF]">
-          All
-        </button>
-        <button class="btn font-medium rounded-md">Open</button>
-        <button class="btn font-medium rounded-md">Closed</button>
-      </div>
-    </section>
+      <!-- btn section -->
+      <section class="max-w-[1110px] mx-auto mt-2 sm:mt-[60px]">
+        <div
+          class="bg-white p-6 rounded-lg flex gap-3 justify-center sm:justify-start"
+        >
+          <button class="btn font-medium rounded-md text-white bg-[#4A00FF]">
+            All
+          </button>
+          <button class="btn font-medium rounded-md">Open</button>
+          <button class="btn font-medium rounded-md">Closed</button>
+        </div>
+      </section>
+
+      <!-- card section header -->
+      <section class="max-w-[1110px] mx-auto mt-4 shadow">
+        <div
+          class="p-6 rounded-t-lg bg-white flex flex-col sm:flex-row justify-center sm:justify-between items-center sm:items-center gap-3"
+        >
+          <div class="flex items-center gap-2">
+            <div class="bg-[#ECE4FF] p-2.5 w-[50px] h-[50px] rounded-full">
+              <img class="w-8" src="./assets/Aperture.png" alt="" />
+            </div>
+
+            <div>
+              <h2 class="font-semibold text-xl text-[#1F2937]">50 Issues</h2>
+              <p class="text-[#64748B]">Track and manage your project issues</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex sm:items-center gap-2">
+              <img src="./assets/open-ellipse.png" alt="" />
+              <p class="font-medium text[#1F2937]">Open</p>
+            </div>
+
+            <div class="flex sm:items-center gap-2">
+              <img src="./assets/close-ellipse.png" alt="" />
+              <p class="font-medium text[#1F2937]">Close</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- card section -->
+      <section class="max-w-[1110px] mx-auto p-6 bg-white">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- card 1 -->
+          <div class="shadow-sm p-4 rounded-md border-t-4 border-[#00A96E]">
+            <div class="flex justify-between items-center mb-3">
+              <img src="./assets/Open-Status.png" alt="" />
+              <p
+                class="text-[#EF4444] font-medium py-1 px-5 bg-[#FEECEC] rounded-full"
+              >
+                High
+              </p>
+            </div>
+
+            <div class="">
+              <h3 class="font-semibold text-[14px] text-[#1F2937] mb-2">
+                Fix navigation menu on mobile devices
+              </h3>
+              <p class="text-[12px] text-[#64748B] mb-3">
+                The navigation menu doesn't collapse properly on mobile
+                devices...
+              </p>
+            </div>
+
+            <div
+              class="flex gap-1.5 items-center pb-8 border-b-2 border-[#E4E4E7]"
+            >
+              <div
+                class="flex gap-1.5 text-[12px] font-medium items-center border border-[#FECACA] bg-[#FEECEC] rounded-full text-[#EF4444] py-1 px-2"
+              >
+                <i class="fa-solid fa-bug"></i>
+                <p>BUG</p>
+              </div>
+
+              <div
+                class="flex gap-1.5 text-[12px] font-medium items-center border border-[#FDE68A] bg-[#FFF8DB] rounded-full text-[#D97706] py-1 px-2"
+              >
+                <i class="fa-regular fa-life-ring"></i>
+                <p>HELP WANTED</p>
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <p class="text-[12px] text-[#64748B] mb-2">#1 by john_doe</p>
+              <p class="text-[12px] text-[#64748B]">1/15/2024</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <!-- js connect -->
     <script src="./script/home.js"></script>
