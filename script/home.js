@@ -1,14 +1,29 @@
 const issueCardContainer = document.getElementById("issue-card-container");
 const totalIssueNumber = document.getElementById("total-issue-number");
+const loadingSpinning = document.getElementById("spinning-loading");
 // console.log(issueCardContainer);
 
 const loadAllIssue = async () => {
+  showLoading();
+
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
   const res = await fetch(url);
   const issue = await res.json();
+
+  hideLoading();
+
   displayAllIssue(issue.data);
 };
+
+function showLoading() {
+  loadingSpinning.classList.remove("hidden");
+  issueCardContainer.innerHTML = "";
+}
+
+function hideLoading() {
+  loadingSpinning.classList.add("hidden");
+}
 
 loadAllIssue();
 
@@ -21,7 +36,7 @@ const displayAllIssue = async (issue) => {
     div.className = `shadow-sm p-4 rounded-md border-t-4 ${item.status === "open" ? "border-[#00A96E]" : "border-[#A855F7]"}`;
     div.innerHTML = `
          <div class="flex justify-between items-center mb-3">
-              <img src="./assets/Open-Status.png" alt="" />
+              <img src="${item.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png"}" alt="" />
               <p
                 class="text-[#EF4444] font-medium py-1 px-5 bg-[#FEECEC] rounded-full"
               >
