@@ -1,7 +1,11 @@
 const issueCardContainer = document.getElementById("issue-card-container");
 const totalIssueNumber = document.getElementById("total-issue-number");
 const loadingSpinning = document.getElementById("spinning-loading");
-// console.log(issueCardContainer);
+const btnAllTab = document.getElementById("btn-all-tab");
+const btnOpenTab = document.getElementById("btn-open-tab");
+const btnClosedTab = document.getElementById("btn-closed-tab");
+
+let allIssue = [];
 
 const loadAllIssue = async () => {
   showLoading();
@@ -12,6 +16,8 @@ const loadAllIssue = async () => {
   const issue = await res.json();
 
   hideLoading();
+
+  allIssue = issue.data;
 
   displayAllIssue(issue.data);
 };
@@ -38,9 +44,9 @@ const displayAllIssue = async (issue) => {
          <div class="flex justify-between items-center mb-3">
               <img src="${item.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png"}" alt="" />
               <p
-                class="text-[#EF4444] font-medium py-1 px-5 bg-[#FEECEC] rounded-full"
+                class=" font-medium py-1 px-5 rounded-full ${item.priority == "high" ? "bg-[#FEECEC] text-[#EF4444]" : item.priority == "low" ? "bg-[#EEEFF2] text-[#9CA3AF]" : "bg-[#FFF6D1] text-[#F59E0B]"}"
               >
-                High
+                ${item.priority}
               </p>
             </div>
 
@@ -86,9 +92,43 @@ const displayAllIssue = async (issue) => {
 // dynamically show  total number of issue
 function showTotalIssue() {
   const issueContainerChildren = issueCardContainer.children;
-
   totalIssueNumber.innerText = issueContainerChildren.length;
 }
+
+// all btn tab
+btnAllTab.addEventListener("click", function () {
+  showLoading();
+
+  displayAllIssue(allIssue);
+
+  hideLoading();
+});
+
+//  open btn tab
+btnOpenTab.addEventListener("click", function () {
+  showLoading();
+
+  const openIssue = allIssue.filter((items) => items.status === "open");
+
+  hideLoading();
+
+  displayAllIssue(openIssue);
+});
+
+// closed btn tab
+btnClosedTab.addEventListener("click", function () {
+  showLoading();
+
+  const closedIssue = allIssue.filter((items) => items.status === "closed");
+
+  hideLoading();
+
+  displayAllIssue(closedIssue);
+});
+
+//  btn toggle function
+
+// `${item.priority == 'high'? 'bg-[#FEECEC] text-[#EF4444]' : item.priority == 'low'? 'bg-[#EEEFF2] text-[#9CA3AF]' : 'bg-[#FFF6D1] text-[#F59E0B]'}`
 
 /*
 {
