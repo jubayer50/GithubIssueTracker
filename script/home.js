@@ -127,8 +127,21 @@ btnClosedTab.addEventListener("click", function () {
 });
 
 //  btn toggle function
+function toggleStyle(id) {
+  // remove all bg color blue and text color white
+  btnAllTab.classList.remove("text-white", "bg-[#4A00FF]");
+  btnOpenTab.classList.remove("text-white", "bg-[#4A00FF]");
+  btnClosedTab.classList.remove("text-white", "bg-[#4A00FF]");
 
-// `${item.priority == 'high'? 'bg-[#FEECEC] text-[#EF4444]' : item.priority == 'low'? 'bg-[#EEEFF2] text-[#9CA3AF]' : 'bg-[#FFF6D1] text-[#F59E0B]'}`
+  // add all bg color white and text color black
+  btnAllTab.classList.add("text-black", "bg-[#ffffff]");
+  btnOpenTab.classList.add("text-black", "bg-[#ffffff]");
+  btnClosedTab.classList.add("text-black", "bg-[#ffffff]");
+
+  // dynamically change bg and text color btn
+  document.getElementById(id).classList.remove("text-black", "bg-[#ffffff]");
+  document.getElementById(id).classList.add("text-white", "bg-[#4A00FF]");
+}
 
 /*
 {

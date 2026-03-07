@@ -67,15 +67,24 @@
           class="bg-white p-6 rounded-lg flex gap-3 justify-center sm:justify-start"
         >
           <button
+            onclick="toggleStyle('btn-all-tab')"
             id="btn-all-tab"
             class="btn font-medium rounded-md text-white bg-[#4A00FF]"
           >
             All
           </button>
-          <button id="btn-open-tab" class="btn font-medium rounded-md">
+          <button
+            onclick="toggleStyle('btn-open-tab')"
+            id="btn-open-tab"
+            class="btn font-medium rounded-md"
+          >
             Open
           </button>
-          <button id="btn-closed-tab" class="btn font-medium rounded-md">
+          <button
+            onclick="toggleStyle('btn-closed-tab')"
+            id="btn-closed-tab"
+            class="btn font-medium rounded-md"
+          >
             Closed
           </button>
         </div>
