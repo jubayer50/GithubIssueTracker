@@ -4,6 +4,7 @@ const loadingSpinning = document.getElementById("spinning-loading");
 const btnAllTab = document.getElementById("btn-all-tab");
 const btnOpenTab = document.getElementById("btn-open-tab");
 const btnClosedTab = document.getElementById("btn-closed-tab");
+const searchInput = document.getElementById("input-search");
 
 let allIssue = [];
 
@@ -46,7 +47,7 @@ const displayAllIssue = async (issue) => {
               <p
                 class=" font-medium py-1 px-5 rounded-full ${item.priority == "high" ? "bg-[#FEECEC] text-[#EF4444]" : item.priority == "low" ? "bg-[#EEEFF2] text-[#9CA3AF]" : "bg-[#FFF6D1] text-[#F59E0B]"}"
               >
-                ${item.priority}
+                ${item.priority.toUpperCase()}
               </p>
             </div>
 
@@ -143,20 +144,24 @@ function toggleStyle(id) {
   document.getElementById(id).classList.add("text-white", "bg-[#4A00FF]");
 }
 
-/*
-{
-    "id": 1,
-    "title": "Fix navigation menu on mobile devices",
-    "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
-    "status": "open",
-    "labels": [
-        "bug",
-        "help wanted"
-    ],
-    "priority": "high",
-    "author": "john_doe",
-    "assignee": "jane_smith",
-    "createdAt": "2024-01-15T10:30:00Z",
-    "updatedAt": "2024-01-15T10:30:00Z"
-}
-*/
+// search function
+
+searchInput.addEventListener("keyup", async function () {
+  const searchInputValue = searchInput.value;
+
+  showLoading();
+
+  const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+
+  const res = await fetch(url);
+  const issue = await res.json();
+
+  hideLoading();
+
+  const issuesData = issue.data;
+
+  const issuesFilter = issuesData.filter((issueItem) =>
+    issueItem.title.includes(searchInputValue),
+  );
+  displayAllIssue(issuesFilter);
+});
