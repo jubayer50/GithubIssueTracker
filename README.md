@@ -10,9 +10,9 @@
    Ans:
    These are all array methods. All are working like a loop. Map method run loop over an array, and it works with every individual element in the array and returns them. Filter methods can separate conditional ways in the array elements, then return them. ForEach methods also work as a map method, but it does not return.
 
-4. 4. What is an arrow function?
-      Ans:
-      An arrow function works like a function. It is a short syntax of a function that was introduced ES6. It helps to write a simple and easy function. If we write a function in one line by using an arrow function, we do not need to write return in the function (auto return). We can write a function with parameters and without parameters using an arrow function. It looks clean and easy to read.
+4. What is an arrow function?
+   Ans:
+   An arrow function works like a function. It is a short syntax of a function that was introduced ES6. It helps to write a simple and easy function. If we write a function in one line by using an arrow function, we do not need to write return in the function (auto return). We can write a function with parameters and without parameters using an arrow function. It looks clean and easy to read.
 
 5. What are template literals?
    Ans:

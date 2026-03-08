@@ -52,7 +52,7 @@ const displayAllIssue = async (issue) => {
             </div>
 
             <div class="">
-              <h3 class="font-semibold text-[14px] text-[#1F2937] mb-2">
+              <h3 onclick="issue_details_modal.showModal()" class="font-semibold hover:text-[#4d5157] text-[14px] text-[#1F2937] mb-2">
                 ${item.title}
               </h3>
               <p class="text-[12px] line-clamp-2 text-[#64748B] mb-3">
