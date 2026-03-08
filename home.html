@@ -188,6 +188,69 @@
           <!-- card 1 end -->
         </div>
       </section>
+
+      <!-- modal -->
+      <section class="max-w-[1110px] mx-auto p-6">
+        <!-- Open the modal using ID.showModal() method -->
+        <button class="btn" onclick="issue_details_modal.showModal()">
+          open modal
+        </button>
+
+        <dialog
+          id="issue_details_modal"
+          class="modal modal-bottom sm:modal-middle"
+        >
+          <div class="modal-box">
+            <h3 class="text-lg text-[#1F2937] font-bold">
+              Fix broken image uploads!
+            </h3>
+
+            <div class="flex flex-wrap gap-4 items-center py-3">
+              <p
+                class="text-[12px] font-medium text-white bg-[#00A96E] px-3 py-1 rounded-full"
+              >
+                Opened
+              </p>
+              <p class="text-[12px] font-medium text-[#64748B]">
+                Opened by Fahim Ahmed
+              </p>
+              <p class="text-[12px] font-medium text-[#64748B]">22/02/2026</p>
+            </div>
+
+            <p class="line-clamp-2 text-[12px] font-medium text-[#64748B]">
+              The navigation menu doesn't collapse properly on mobile devices.
+              Need to fix the responsive behavior.
+            </p>
+
+            <div class="p-4 rounded-lg bg-[#F8FAFC] flex gap-[120px] mt-5">
+              <div>
+                <p class="text-[12px] font-medium text-[#64748B] mb-2">
+                  Assignee:
+                </p>
+                <p class="font-semibold text-[#1F2937]">Fahim Ahmed</p>
+              </div>
+
+              <div>
+                <p class="text-[12px] font-medium text-[#64748B] mb-2">
+                  Priority:
+                </p>
+                <p
+                  class="text-[12px] font-medium bg-[#EF4444] text-white px-3 py-1 rounded-full"
+                >
+                  High
+                </p>
+              </div>
+            </div>
+
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn bg-[#4A00FF] text-white">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+      </section>
     </main>
 
     <!-- js connect -->
