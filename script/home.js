@@ -38,6 +38,8 @@ const displayAllIssue = async (issue) => {
   // console.log(issue);
 
   issue.forEach((item) => {
+    // console.log(item.labels);
+
     const div = document.createElement("div");
 
     div.className = `shadow-sm p-4 rounded-md border-t-4 ${item.status === "open" ? "border-[#00A96E]" : "border-[#A855F7]"}`;
@@ -61,21 +63,9 @@ const displayAllIssue = async (issue) => {
             </div>
 
             <div
-              class="flex gap-1.5 items-center pb-8 border-b-2 border-[#E4E4E7]"
+              class="flex gap-2 items-center pb-8 border-b-2 border-[#E4E4E7]"
             >
-              <div
-                class="flex gap-1.5 text-[12px] font-medium items-center border border-[#FECACA] bg-[#FEECEC] rounded-full text-[#EF4444] py-1 px-2"
-              >
-                <i class="fa-solid fa-bug"></i>
-                <p>BUG</p>
-              </div>
-
-              <div
-                class="flex gap-1.5 text-[12px] font-medium items-center border border-[#FDE68A] bg-[#FFF8DB] rounded-full text-[#D97706] py-1 px-2"
-              >
-                <i class="fa-regular fa-life-ring"></i>
-                <p>HELP WANTED</p>
-              </div>
+              ${createElement(item.labels)}
             </div>
 
             <div class="pt-4">
@@ -165,3 +155,19 @@ searchInput.addEventListener("keyup", async function () {
   );
   displayAllIssue(issuesFilter);
 });
+
+function createElement(array) {
+  // console.log(array);
+
+  const createPTag = array
+    .map(
+      (item) => `
+
+
+  <p class='text-[11px] font-medium px-1 py-0.5 rounded-full border-2 flex gap-1 items-center ${item == "bug" ? "bg-[#FEECEC] text-[#EF4444]  border-[#FECACA]" : item == "help wanted" ? "bg-[#FFF8DB] text-[#D97706]  border-[#FDE68A]" : item == "enhancement" ? "bg-[#DEFCE8] text-[#00A96E] border border-[#BBF7D0]" : item == "documentation" ? "bg-[#DEFCE8] text-[#00A96E]  border-[#BBF7D0]" : item == "good first issue" ? "bg-[#DEFCE8] text-[#00A96E] border-[#BBF7D0]" : ""}'>${item == "bug" ? `<i class="fa-solid fa-bug"></i>` : item == "help wanted" ? `<i class="fa-solid fa-life-ring"></i>` : item == "enhancement" ? `<i class="fa-solid fa-wand-magic-sparkles"></i>` : item == "documentation" ? `<i class="fa-solid fa-life-ring"></i>` : item == "good first issue" ? `<i class="fa-solid fa-life-ring"></i>` : ""} ${item}</p>
+  `,
+    )
+    .join(" ");
+
+  return createPTag;
+}
