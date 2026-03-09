@@ -5,6 +5,7 @@ const btnAllTab = document.getElementById("btn-all-tab");
 const btnOpenTab = document.getElementById("btn-open-tab");
 const btnClosedTab = document.getElementById("btn-closed-tab");
 const searchInput = document.getElementById("input-search");
+const modalContainer = document.getElementById("modal-container");
 
 let allIssue = [];
 
@@ -54,7 +55,7 @@ const displayAllIssue = async (issue) => {
             </div>
 
             <div class="">
-              <h3 onclick="issue_details_modal.showModal()" class="font-semibold hover:text-[#4d5157] text-[14px] text-[#1F2937] mb-2">
+              <h3 onclick="loadModal(${item.id})" class="font-semibold hover:text-[#4A00FF] text-[14px] text-[#1F2937] mb-2">
                 ${item.title}
               </h3>
               <p class="text-[12px] line-clamp-2 text-[#64748B] mb-3">
@@ -171,3 +172,94 @@ function createElement(array) {
 
   return createPTag;
 }
+
+// modal function
+function loadModal(id) {
+  console.log(id);
+
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displayModal(data.data));
+}
+
+const displayModal = (modalDetails) => {
+  console.log(modalDetails);
+
+  modalContainer.innerHTML = `
+  <h3 class="text-lg text-[#1F2937] font-bold">
+              ${modalDetails.title}
+            </h3>
+
+            <div class="flex flex-wrap gap-4 items-center py-3">
+              <p
+                class="text-[12px] font-medium text-white ${modalDetails.status == "open" ? "bg-[#00A96E]" : "bg-[#EF4444]"} px-3 py-1 rounded-full"
+              >
+                ${modalDetails.status}
+              </p>
+              <p class="text-[12px] font-medium flex items-center gap-1 text-[#64748B]">
+               ${`<i class="fa-solid text-[6px] fa-circle"></i>`}  Opened by ${modalDetails.assignee}
+              </p>
+              <p class="text-[12px] font-medium flex items-center gap-1 text-[#64748B]">${`<i class="fa-solid text-[6px] fa-circle"></i>`}  ${new Date(modalDetails.createdAt).toLocaleDateString()}</p>
+            </div>
+
+            <div
+              class="flex gap-2 items-center pb-2"
+            >
+              ${createElement(modalDetails.labels)}
+            </div>
+
+            <p class="line-clamp-2 text-[12px] font-medium text-[#64748B]">
+              ${modalDetails.description}
+            </p>
+
+            <div class="p-4 rounded-lg bg-[#F8FAFC] flex gap-[120px] mt-5">
+              <div>
+                <p class="text-[12px] font-medium text-[#64748B] mb-2">
+                  Assignee:
+                </p>
+                <p class="font-semibold text-[#1F2937]">${modalDetails.assignee}</p>
+              </div>
+
+              <div>
+                <p class="text-[12px] font-medium text-[#64748B] mb-2">
+                  Priority:
+                </p>
+                <p
+                  class="text-[12px] font-medium bg-[#EF4444] text-white px-3 py-1 rounded-full"
+                >
+                  ${modalDetails.priority.toUpperCase()}
+                </p>
+              </div>
+            </div>
+
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn bg-[#4A00FF] text-white">Close</button>
+              </form>
+            </div>
+  `;
+
+  document.getElementById("issue_details_modal").showModal();
+};
+
+/*
+
+{
+    "id": 17,
+    "title": "Email notifications not being sent",
+    "description": "Users report not receiving email notifications. SMTP configuration might be incorrect.",
+    "status": "open",
+    "labels": [
+        "bug"
+    ],
+    "priority": "high",
+    "author": "mail_mary",
+    "assignee": "security_sam",
+    "createdAt": "2024-01-25T08:30:00Z",
+    "updatedAt": "2024-01-25T08:30:00Z"
+}
+
+*/
